@@ -11,6 +11,8 @@ import Register from "./pages/Register";
 import { AuthProvider } from "./context/AuthContext";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import ErrorPage from "./pages/error";
+
 
 function ProtectedRoute({ children }) {
   const { token } = useContext(AuthContext);
@@ -37,6 +39,8 @@ export default function App() {
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/recipes" element={<Recipes />} />
+    <Route path="/500" element={<ErrorPage code={500} />} />
+    <Route path="/503" element={<ErrorPage code={503} />} />
     <Route
       path="/create"
       element={
