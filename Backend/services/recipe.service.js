@@ -13,3 +13,11 @@ exports.createRecipe = async (data) => {
 exports.getAllRecipes = async () => {
   return Recipe.getAllRecipes();
 };
+
+exports.updateRecipe = async (id, fields) => {
+  return Recipe.updateRecipe(id, fields);
+};
+
+exports.deleteRecipe = async (id) => {
+  return Recipe.deleteRecipe(id);
+};

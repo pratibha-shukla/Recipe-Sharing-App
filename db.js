@@ -41,8 +41,15 @@ const ready = (async () => {
       ingredients TEXT,
       steps TEXT,
       user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-      created_at TIMESTAMPTZ DEFAULT NOW()
+      created_at TIMESTAMPTZ DEFAULT NOW(),
+      updated_at TIMESTAMPTZ DEFAULT NOW()
     );
+  `);
+
+  // Ensure updated_at exists if table was created earlier
+  await pool.query(`
+    ALTER TABLE recipes
+    ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ DEFAULT NOW();
   `);
 
   console.log('Database ready');
